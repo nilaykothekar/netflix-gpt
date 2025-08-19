@@ -1,8 +1,7 @@
 import { Fragment } from 'react/jsx-runtime';
-import Login from './Login';
-import Browse from './Browse';
+import Login from '../pages/Login';
+import Browse from '../pages/Browse';
 import { createBrowserRouter } from 'react-router';
-import Header from './Header';
 import { RouterProvider } from 'react-router';
 
 const Body = () => {
