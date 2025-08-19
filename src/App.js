@@ -1,10 +1,11 @@
 import { Fragment } from 'react/jsx-runtime';
 import { createRoot } from 'react-dom/client';
+import Body from './components/Body';
 
 const App = () => {
   return (
     <Fragment>
-      <p>App</p>
+      <Body />
     </Fragment>
   );
 };
