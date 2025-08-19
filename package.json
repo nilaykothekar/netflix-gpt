@@ -1,0 +1,21 @@
+{
+  "name": "netflix",
+  "version": "1.0.0",
+  "description": "This is a netflix web application where you can watch your favourite movies!",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Nilay Kothekar",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  }
+}
