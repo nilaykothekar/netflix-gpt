@@ -1,3 +1,4 @@
 - used parcel as a bundler
 - used tailwind css for designing
 - first page is the login button, once authenticated it will move to browse page
+- built a feature which toggles between sign in form or sign up form based on whether a user exists
