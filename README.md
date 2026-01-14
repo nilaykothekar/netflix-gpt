@@ -1,0 +1,3 @@
+- used parcel as a bundler
+- used tailwind css for designing
+- first page is the login button, once authenticated it will move to browse page
