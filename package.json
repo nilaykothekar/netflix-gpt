@@ -1,0 +1,21 @@
+{
+  "name": "netflix",
+  "version": "1.0.0",
+  "description": "this is a clone of Netflix project",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Nilay Kothekar",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.3"
+  }
+}
