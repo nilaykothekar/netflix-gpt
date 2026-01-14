@@ -11,8 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "i18next": "^25.7.4",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "react-i18next": "^16.5.3",
     "react-router-dom": "^7.12.0",
     "tailwindcss": "^4.1.18"
   },
