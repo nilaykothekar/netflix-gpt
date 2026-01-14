@@ -1,16 +1,32 @@
 import { Fragment } from "react/jsx-runtime";
 import Header from "../components/Header";
 import { NETFLIX_BG } from "../utils/constants";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { checkValidation } from "../utils/checkValidation";
+import { useValidate } from "../hooks/useValidate";
 
 const Login = () => {
   const { t } = useTranslation();
   const [existingUser, setExistingUser] = useState(true);
+  const [error, setError] = useState("");
+  const fullName = useRef("");
+  const email = useRef("");
+  const password = useRef("");
 
   const handleExistingUser = (event) => {
     event.preventDefault();
     setExistingUser(!existingUser);
+  };
+
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    const errorMessage = useValidate(
+      fullName.current.value,
+      email.current.value,
+      password.current.value
+    );
+    setError(errorMessage);
   };
 
   return (
@@ -27,21 +43,28 @@ const Login = () => {
           {!existingUser && (
             <input
               type="text"
+              ref={fullName}
               className="w-full p-4 my-4 rounded bg-gray-900 text-white border border-gray-400"
               placeholder={t("full-name")}
             />
           )}
           <input
             type="text"
+            ref={email}
             className="w-full p-4 my-4 rounded bg-gray-900 text-white border border-gray-400"
             placeholder={t("email")}
           />
           <input
             type="password"
+            ref={password}
             className="w-full p-4 my-4 rounded bg-gray-900 text-white border border-gray-400"
             placeholder={t("password")}
           />
-          <button className="w-full p-2 my-4 text-white bg-red-600 hover:bg-red-700 duration-100 rounded-lg cursor-pointer font-semibold">
+          <p className="text-red-500 text-sm my-4">{error}</p>
+          <button
+            className="w-full p-2 my-4 text-white bg-red-600 hover:bg-red-700 duration-100 rounded-lg cursor-pointer font-semibold"
+            onClick={handleSignIn}
+          >
             {existingUser ? t("sign-in") : t("sign-up")}
           </button>
           <p className="text-white my-4 text-sm">
