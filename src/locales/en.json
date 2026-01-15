@@ -13,5 +13,6 @@
     "sign-up-now": "Sign Up Now",
     "sign-in-now": "Sign In Now",
     "invalid-email": "Invalid email format.",
-    "invalid-password": "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character."
+    "invalid-password": "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.",
+    "sign-out": "Sign Out"
 }

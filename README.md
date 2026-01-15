@@ -5,3 +5,8 @@
 - implemented internationalization using i18next for english and hindi support
 - implemented form logic and handled form validations using useRef hook
 - used firsebase to deploy application to production and hosting
+- used signup and signin firsebase authentication apis to register user to firebase auth db
+- integrated redux toolkit for storing user credentials in a global store
+- implemented sign out functionality using firebase
+- used updated profile to show user name on header after successfully sign in
+- used TMDB api for fetching movies list
