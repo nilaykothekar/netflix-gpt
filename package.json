@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "firebase": "^12.8.0",
     "i18next": "^25.7.4",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",

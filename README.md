@@ -4,3 +4,4 @@
 - built a feature which toggles between sign in form or sign up form based on whether a user exists
 - implemented internationalization using i18next for english and hindi support
 - implemented form logic and handled form validations using useRef hook
+- used firsebase to deploy application to production and hosting

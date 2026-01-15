@@ -1,85 +1,128 @@
-import { Fragment } from "react/jsx-runtime";
+import React from "react";
 import Header from "../components/Header";
 import { NETFLIX_BG } from "../utils/constants";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { checkValidation } from "../utils/checkValidation";
 import { useValidate } from "../hooks/useValidate";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const { t } = useTranslation();
   const [existingUser, setExistingUser] = useState(true);
   const [error, setError] = useState("");
-  const fullName = useRef("");
-  const email = useRef("");
-  const password = useRef("");
 
-  const handleExistingUser = (event) => {
-    event.preventDefault();
-    setExistingUser(!existingUser);
+  const fullName = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const handleExistingUser = () => {
+    setExistingUser((prev) => !prev);
+    setError("");
   };
 
-  const handleSignIn = (event) => {
-    event.preventDefault();
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    console.log("🔥 submit clicked");
+
     const errorMessage = useValidate(
-      fullName.current.value,
+      existingUser ? null : fullName.current?.value,
       email.current.value,
       password.current.value
     );
-    setError(errorMessage);
+
+    if (errorMessage) {
+      setError(errorMessage);
+      return;
+    }
+
+    if (!existingUser) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log("✅ User signed up:", user);
+        })
+        .catch((err) => {
+          console.error(err);
+          setError(err.message);
+        });
+    } else {
+      console.log("🔐 Sign in flow");
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setError(errorMessage);
+        });
+    }
   };
 
   return (
-    <Fragment>
+    <>
       <Header />
       <section
         className="h-screen bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url(${NETFLIX_BG})` }}
       >
-        <form className="w-1/3 bg-black opacity-85 p-8 rounded-lg">
+        <form
+          onSubmit={handleSignIn}
+          className="w-1/3 bg-black opacity-85 p-8 rounded-lg"
+        >
           <h1 className="text-white text-3xl my-4 font-bold">
             {existingUser ? t("sign-in") : t("sign-up")}
           </h1>
+
           {!existingUser && (
             <input
-              type="text"
               ref={fullName}
-              className="w-full p-4 my-4 rounded bg-gray-900 text-white border border-gray-400"
+              type="text"
               placeholder={t("full-name")}
+              className="w-full p-4 my-4 rounded bg-gray-900 text-white"
             />
           )}
+
           <input
-            type="text"
             ref={email}
-            className="w-full p-4 my-4 rounded bg-gray-900 text-white border border-gray-400"
+            type="text"
             placeholder={t("email")}
+            className="w-full p-4 my-4 rounded bg-gray-900 text-white"
           />
+
           <input
-            type="password"
             ref={password}
-            className="w-full p-4 my-4 rounded bg-gray-900 text-white border border-gray-400"
+            type="password"
             placeholder={t("password")}
+            className="w-full p-4 my-4 rounded bg-gray-900 text-white"
           />
-          <p className="text-red-500 text-sm my-4">{error}</p>
+
+          {error && <p className="text-red-500">{error}</p>}
+
           <button
-            className="w-full p-2 my-4 text-white bg-red-600 hover:bg-red-700 duration-100 rounded-lg cursor-pointer font-semibold"
-            onClick={handleSignIn}
+            type="submit"
+            className="w-full bg-red-600 p-3 mt-4 test-white font-semibold rounded-md cursor-pointer"
           >
             {existingUser ? t("sign-in") : t("sign-up")}
           </button>
-          <p className="text-white my-4 text-sm">
-            {existingUser ? t("new-to-netflix") : t("already-a-user")}{" "}
-            <button
-              className="font-semibold cursor-pointer hover:underline"
-              onClick={handleExistingUser}
-              type="button"
-            >
-              {existingUser ? t("sign-up-now") : t("sign-in-now")}
-            </button>
-          </p>
+
+          <button
+            type="button"
+            onClick={handleExistingUser}
+            className="text-white mt-4 underline"
+          >
+            {existingUser ? t("sign-up-now") : t("sign-in-now")}
+          </button>
         </form>
       </section>
-    </Fragment>
+    </>
   );
 };
 
