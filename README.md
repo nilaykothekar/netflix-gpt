@@ -11,3 +11,5 @@
 - used updated profile to show user name on header after successfully sign in
 - used TMDB api for fetching movies list
 - used onAuthStateChanged api for keeping protected route
+- unsubscribed to the onAuthStateChanged callback
+- got data from now playing movies api of TMDB

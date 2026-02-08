@@ -1,5 +1,5 @@
 import { Fragment } from "react/jsx-runtime";
-import { NETFLIX_LOGO, USER_ICON } from "../utils/constants";
+import { NETFLIX_LOGO } from "../utils/constants";
 import { useTranslation } from "react-i18next";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../redux/slices/userSlice";
+import { USER_ICON } from "../utils/constants";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -29,7 +30,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in or signed up
         const { uid, email, displayName } = user;
@@ -41,6 +42,10 @@ const Header = () => {
         navigate("/");
       }
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
