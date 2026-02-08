@@ -10,3 +10,4 @@
 - implemented sign out functionality using firebase
 - used updated profile to show user name on header after successfully sign in
 - used TMDB api for fetching movies list
+- used onAuthStateChanged api for keeping protected route
