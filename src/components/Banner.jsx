@@ -33,7 +33,7 @@ const Banner = () => {
       </section>
       <section className="h-[96vh]">
         <iframe
-          className="w-screen aspect-video"
+          className="w-screen h-full"
           src={`https://www.youtube.com/embed/${trailer?.key}?autoplay=1&mute=1`}
           title="YouTube video player"
           allowFullScreen

@@ -13,3 +13,5 @@
 - used onAuthStateChanged api for keeping protected route
 - unsubscribed to the onAuthStateChanged callback
 - got data from now playing movies api of TMDB
+- Embedded YouTube video using iframe and made it autoplay and mute
+- Used Git and Github for version control
