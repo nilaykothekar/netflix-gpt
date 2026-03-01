@@ -15,3 +15,5 @@
 - got data from now playing movies api of TMDB
 - Embedded YouTube video using iframe and made it autoplay and mute
 - Used Git and Github for version control
+- Introduced movies list which includes popular movies, now playing movies, top rated movies, upcoming movies
+- created browse page exactly same as Netflix original website
