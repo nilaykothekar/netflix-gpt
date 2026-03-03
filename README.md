@@ -17,3 +17,5 @@
 - Used Git and Github for version control
 - Introduced movies list which includes popular movies, now playing movies, top rated movies, upcoming movies
 - created browse page exactly same as Netflix original website
+- created custom hooks to implement now playing, popular, upcoming and top rated movies which are maintenable, testable, modular, reusable
+- created a movie recommendation system using GPT APIs built by OpenAI

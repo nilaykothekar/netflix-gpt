@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../redux/slices/userSlice";
 import { USER_ICON } from "../utils/constants";
+import { toggleSearch } from "../redux/slices/gptSlice";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -48,6 +49,10 @@ const Header = () => {
     };
   }, []);
 
+  const handleSearch = () => {
+    dispatch(toggleSearch());
+  };
+
   return (
     <Fragment>
       <nav className="flex items-center justify-between p-4 bg-linear-to-b from-black to-gray-800 shadow-2xl w-screen">
@@ -69,8 +74,12 @@ const Header = () => {
                 <option value="hi">{t("hindi")}</option>
               </select>
             </li>
-            <li className="text-white text-sm mx-4">{t("about")}</li>
-            <li className="text-white text-sm mx-4">{t("contact")}</li>
+            <button
+              className="text-white text-sm mx-4 cursor-pointer"
+              onClick={handleSearch}
+            >
+              {t("search")}
+            </button>
           </ul>
           <button className="mx-4 flex items-center" onClick={handleSignOut}>
             <img src={USER_ICON} alt="user-icon" width={36} />
